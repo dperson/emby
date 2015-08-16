@@ -18,14 +18,14 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     groupadd -r emby && useradd -m -r -g emby emby && \
     mkdir -p /config /media && \
-    chown -Rh emby. /config /media && \
+    chown -Rh emby. /config /media /usr/lib/emby && \
     apt-get purge -qqy curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/cache/* /var/tmp/*
 
 COPY emby.sh /usr/bin/
 
-VOLUME ["/home/emby", "/config", "/media", "/tmp"]
+VOLUME ["/config", "/media", "/tmp", "/usr/lib/emby"]
 
 EXPOSE 8096 8920 7359/udp 1900/udp
 
