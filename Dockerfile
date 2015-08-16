@@ -17,14 +17,14 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     apt-get install -qqy --no-install-recommends emby-server \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     mkdir -p /config /media && \
-    chown -Rh emby. /config /media /usr/lib/emby && \
+    chown -Rh emby. /config /media && \
     apt-get purge -qqy curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/cache/* /var/tmp/*
 
 COPY emby.sh /usr/bin/
 
-VOLUME ["/config", "/media", "/tmp", "/usr/lib/emby"]
+VOLUME ["/config", "/media", "/tmp", "/usr/lib/emby-server"]
 
 EXPOSE 8096 8920 7359/udp 1900/udp
 
