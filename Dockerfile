@@ -11,7 +11,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     url='http://download.opensuse.org/repositories/home:emby/Debian_8.0' && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends curl && \
-    curl -Lks "$url/Release.key" | sudo apt-key add - && \
+    curl -Lks "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >> /etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends emby-server \
