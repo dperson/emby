@@ -29,7 +29,8 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
 
 COPY emby.sh /usr/bin/
 
-VOLUME ["/config", "/media", "/tmp", "/usr/lib/emby-server"]
+VOLUME ["/run", "/tmp", "/var/cache", "/var/lib", "/var/log", "/var/tmp", \
+            "/config", "/media", "/usr/lib/emby-server"]
 
 EXPOSE 8096 8920 7359/udp 1900/udp
 

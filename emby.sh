@@ -64,6 +64,8 @@ done
 shift $(( OPTIND - 1 ))
 
 [[ "${TZ:-""}" ]] && timezone "$TZ"
+[[ "${USERID:-""}" =~ ^[0-9]+$ ]] && usermod -u $USERID emby
+[[ "${GROUPID:-""}" =~ ^[0-9]+$ ]] && usermod -g $GROUPID emby
 
 if [[ $# -ge 1 && -x $(which $1 2>&-) ]]; then
     exec "$@"
@@ -75,7 +77,7 @@ elif ps -ef | egrep -v grep | grep -q start_pms; then
 else
     export HOME_PATH=/usr/lib/emby-server
     export PROGRAMDATA=/config
-    chown emby. -Rh $PROGRAMDATA ~emby
+    chown emby. -Rh $PROGRAMDATA $HOME_PATH 2>&1 | grep -iv 'Read-only' || :
     su -l emby -s /bin/bash -c "cd $HOME_PATH;exec env MONO_THREADS_PER_CPU=100\
                 MONO_GC_PARAMS=nursery-size=64m mono-sgen \
                 $HOME_PATH/MediaBrowser.Server.Mono.exe \
