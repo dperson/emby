@@ -80,7 +80,7 @@ else
     chown emby. -Rh $PROGRAMDATA $HOME_PATH 2>&1 | grep -iv 'Read-only' || :
     su -l emby -s /bin/bash -c "cd $HOME_PATH;exec env MONO_THREADS_PER_CPU=100\
                 MONO_GC_PARAMS=nursery-size=64m mono-sgen \
-                $HOME_PATH/MediaBrowser.Server.Mono.exe \
+                $HOME_PATH/bin/MediaBrowser.Server.Mono.exe \
                 -programdata $PROGRAMDATA -ffmpeg $(which ffmpeg) \
                 -ffprobe $(which ffprobe)"
 fi
