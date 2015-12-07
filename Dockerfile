@@ -19,8 +19,8 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     curl -Lks "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends emby-server-beta ffmpeg \
-                imagemagick mediainfo \
+    apt-get install -qqy --no-install-recommends emby-server ffmpeg imagemagick\
+                mediainfo \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     mkdir -p /config /media && \
     chown -Rh emby. /config /media && \
