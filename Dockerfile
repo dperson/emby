@@ -16,7 +16,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     apt-get update -qq && \
     apt-get install -qqy --force-yes --no-install-recommends curl \
                 deb-multimedia-keyring && \
-    curl -Lks "$url/Release.key" | apt-key add - && \
+    curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends emby-server ffmpeg imagemagick\
