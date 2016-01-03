@@ -64,8 +64,8 @@ done
 shift $(( OPTIND - 1 ))
 
 [[ "${TZ:-""}" ]] && timezone "$TZ"
-[[ "${USERID:-""}" =~ ^[0-9]+$ ]] && usermod -u $USERID emby
-[[ "${GROUPID:-""}" =~ ^[0-9]+$ ]] && groupmod -g $GROUPID emby
+[[ "${USERID:-""}" =~ ^[0-9]+$ ]] && usermod -u $USERID -o emby
+[[ "${GROUPID:-""}" =~ ^[0-9]+$ ]] && groupmod -g $GROUPID -o emby
 
 if [[ $# -ge 1 && -x $(which $1 2>&-) ]]; then
     exec "$@"
