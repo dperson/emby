@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER David Personette <dperson@dperson.com>
+MAINTAINER David Personette <dperson@gmail.com>
 
 #ENV HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
 #apt-get install -qqy --no-install-recommends mono-runtime mediainfo \
