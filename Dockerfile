@@ -11,8 +11,6 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     url='http://download.opensuse.org/repositories/home:emby/Debian_8.0' && \
     echo 'deb http://www.deb-multimedia.org stretch main non-free' \
                 >>/etc/apt/sources.list && \
-    echo 'deb http://www.deb-multimedia.org stretch-backports main' \
-                >>/etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install -qqy --force-yes --no-install-recommends curl \
                 deb-multimedia-keyring && \
