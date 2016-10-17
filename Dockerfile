@@ -12,7 +12,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     echo 'deb http://www.deb-multimedia.org stretch main non-free' \
                 >>/etc/apt/sources.list && \
     apt-get update -qq && \
-    apt-get install -qqy --force-yes --no-install-recommends curl \
+    apt-get install -qqy --allow --no-install-recommends curl gnupg2 \
                 deb-multimedia-keyring && \
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
