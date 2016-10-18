@@ -8,15 +8,15 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 >>/etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install -qqy --allow-unauthenticated --no-install-recommends curl \
-                deb-multimedia-keyring gnupg1 && \
+                deb-multimedia-keyring ffmpeg gnupg1 mediainfo \
+                $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends emby-server ffmpeg mediainfo \
-                $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
+    apt-get install -qqy --no-install-recommends emby-server && \
     mkdir -p /config /media && \
     chown -Rh emby. /config /media && \
-    apt-get purge -qqy curl && \
+    apt-get purge -qqy curl gnupg1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/cache/* /var/tmp/*
 
