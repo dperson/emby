@@ -1,11 +1,6 @@
 FROM debian:stretch
 MAINTAINER David Personette <dperson@gmail.com>
 
-#ENV HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
-#apt-get install -qqy --no-install-recommends mono-runtime mediainfo \
-#            libc6-dev libsqlite3-dev ffmpeg imagemagick-6.q8 \
-#            libmagickwand-6.q8-2 libmagickcore-6.q8-2 emby-server \
-
 # Install emby
 RUN export DEBIAN_FRONTEND='noninteractive' && \
     url='http://download.opensuse.org/repositories/home:emby/Debian_8.0' && \
@@ -17,8 +12,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends emby-server ffmpeg \
-                libembymagickwand-6.q8-2 mediainfo \
+    apt-get install -qqy --no-install-recommends emby-server ffmpeg mediainfo \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     mkdir -p /config /media && \
     chown -Rh emby. /config /media && \
