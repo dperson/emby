@@ -8,7 +8,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 >>/etc/apt/sources.list && \
     apt-get update -qq && \
     apt-get install -qqy --allow-unauthenticated --no-install-recommends curl \
-                deb-multimedia-keyring ffmpeg gnupg1 mediainfo psutils \
+                deb-multimedia-keyring ffmpeg gnupg1 mediainfo procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
