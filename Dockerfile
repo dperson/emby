@@ -2,8 +2,12 @@ FROM debian:stretch
 MAINTAINER David Personette <dperson@gmail.com>
 
 # Install emby
-RUN export DEBIAN_FRONTEND='noninteractive' && \
+RUN export DEBIAN_FRONTEND='noninteractive' LANGUAGE=en_US.UTF-8 \
+                LANG=en_US.UTF-8 && \
     url='http://download.opensuse.org/repositories/home:emby/Debian_8.0' && \
+    locale-gen en_US en_US.UTF-8 && \
+    update-locale LANG=en_US.UTF-8 && \
+    dpkg-reconfigure locales && \
     echo 'deb http://www.deb-multimedia.org stretch main non-free' \
                 >>/etc/apt/sources.list && \
     apt-get update -qq && \
