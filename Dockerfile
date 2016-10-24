@@ -11,8 +11,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 deb-multimedia-keyring ffmpeg gnupg1 locales mediainfo procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     locale-gen en_US en_US.UTF-8 && \
-    update-locale LANG=en_US.UTF-8 && \
-    export LANGUAGE=en_US.UTF-8 LANG=en_US.UTF-8 && \
+    export LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 && \
     dpkg-reconfigure locales && \
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
