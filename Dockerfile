@@ -3,7 +3,7 @@ MAINTAINER David Personette <dperson@gmail.com>
 
 # Install emby
 RUN export DEBIAN_FRONTEND='noninteractive' && \
-    url='http://download.opensuse.org/repositories/home:emby/Debian_8.0' && \
+    url='http://download.opensuse.org/repositories/home:emby/Debian_Next' && \
     echo 'deb http://www.deb-multimedia.org stretch main non-free' \
                 >>/etc/apt/sources.list && \
     apt-get update -qq && \
@@ -11,7 +11,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 deb-multimedia-keyring ffmpeg gnupg1 locales mediainfo procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     locale-gen en_US en_US.UTF-8 && \
-    export LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 && \
+    export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANGUAGE=en_US.UTF-8 && \
     dpkg-reconfigure locales && \
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
