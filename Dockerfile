@@ -3,7 +3,7 @@ MAINTAINER David Personette <dperson@gmail.com>
 
 # Install emby
 RUN export DEBIAN_FRONTEND='noninteractive' && \
-    url='http://download.opensuse.org/repositories/home:emby/Debian_8.0' && \
+    url='http://download.opensuse.org/repositories/home:emby/Debian_Next' && \
     echo 'deb http://www.deb-multimedia.org stretch main non-free' \
                 >>/etc/apt/sources.list && \
     apt-get update -qq && \
