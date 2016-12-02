@@ -73,9 +73,8 @@ elif [[ $# -ge 1 ]]; then
 elif ps -ef | egrep -v grep | grep -q start_pms; then
     echo "Service already running, please restart container to apply changes"
 else
-    export HOME_PATH=/usr/lib/emby-server
-    export LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8
-    export PROGRAMDATA=/config
+    export HOME_PATH=/usr/lib/emby-server PROGRAMDATA=/config
+    export LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
     chown emby. -Rh $PROGRAMDATA $HOME_PATH 2>&1 | grep -iv 'Read-only' || :
     su -l emby -s /bin/bash -c "cd $HOME_PATH;exec env MONO_THREADS_PER_CPU=100\
                 MONO_GC_PARAMS=nursery-size=64m mono-sgen \

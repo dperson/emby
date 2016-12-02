@@ -10,13 +10,11 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     apt-get install -qqy --allow-unauthenticated --no-install-recommends curl \
                 deb-multimedia-keyring ffmpeg gnupg1 locales mediainfo procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
-    locale-gen en_US en_US.UTF-8 && \
-    export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANGUAGE=en_US.UTF-8 && \
-    dpkg-reconfigure locales && \
+    localedef -c -ien_US -fUTF-8 -A/usr/share/locale/locale.alias en_US.UTF-8&&\
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends emby-server && \
+    apt-get install -qqy --no-install-recommends emby-server-beta && \
     mkdir -p /config /media && \
     chown -Rh emby. /config /media && \
     apt-get purge -qqy curl gnupg1 && \
