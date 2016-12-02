@@ -14,7 +14,9 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends emby-server-beta && \
+    apt-get install -qqy --no-install-recommends emby-server && \
+    echo '/usr/lib/emby-server/x86_64-linux-gnu' >/etc/ld.so.conf.d/emby.conf&&\
+    ldconfig && \
     mkdir -p /config /media && \
     chown -Rh emby. /config /media && \
     apt-get purge -qqy curl gnupg1 && \
