@@ -6,8 +6,9 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     url='http://download.opensuse.org/repositories/home:emby/Debian_Next' && \
     ffurl='http://johnvansickle.com/ffmpeg/releases' && \
     apt-get update -qq && \
-    apt-get install -qqy --allow-unauthenticated --no-install-recommends curl \
-                ca-certificates{,-mono} gnupg1 libhx28 locales procps xz-utils \
+    apt-get install -qqy --allow-unauthenticated --no-install-recommends \
+                ca-certificates ca-certificates-mono curl gnupg1 libhx28 \
+                locales procps xz-utils \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     localedef -c -ien_US -fUTF-8 -A/usr/share/locale/locale.alias en_US.UTF-8&&\
     curl -Ls "$ffurl/ffmpeg-release-64bit-static.tar.xz" -o ffmpeg.txz && \
