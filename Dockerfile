@@ -4,13 +4,15 @@ MAINTAINER David Personette <dperson@gmail.com>
 # Install emby
 RUN export DEBIAN_FRONTEND='noninteractive' && \
     url='http://download.opensuse.org/repositories/home:emby/Debian_Next' && \
-    echo 'deb http://www.deb-multimedia.org stretch main non-free' \
-                >>/etc/apt/sources.list && \
+    ffurl='http://johnvansickle.com/ffmpeg/releases' && \
     apt-get update -qq && \
     apt-get install -qqy --allow-unauthenticated --no-install-recommends curl \
-                deb-multimedia-keyring ffmpeg gnupg1 locales mediainfo procps \
+                ca-certificates{,-mono} gnupg1 libhx28 locales procps xz-utils \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     localedef -c -ien_US -fUTF-8 -A/usr/share/locale/locale.alias en_US.UTF-8&&\
+    curl -Ls "$ffurl/ffmpeg-release-64bit-static.tar.xz" -o ffmpeg.txz && \
+    tar --strip-components=1 --wildcards -C /bin -xf ffmpeg.txz "*/ffmpeg" && \
+    tar --strip-components=1 --wildcards -C /bin -xf ffmpeg.txz "*/ffprobe" && \
     curl -Ls "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
@@ -21,7 +23,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     chown -Rh emby. /config /media && \
     apt-get purge -qqy curl gnupg1 && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/cache/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/cache/* /var/tmp/* ffmpeg.txz
 
 COPY emby.sh /usr/bin/
 
