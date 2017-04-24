@@ -11,10 +11,10 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 locales procps xz-utils \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     localedef -c -ien_US -fUTF-8 -A/usr/share/locale/locale.alias en_US.UTF-8&&\
-    curl -Ls "$ffurl/ffmpeg-release-64bit-static.tar.xz" -o ffmpeg.txz && \
+    curl -LSs "$ffurl/ffmpeg-release-64bit-static.tar.xz" -o ffmpeg.txz && \
     tar --strip-components=1 --wildcards -C /bin -xf ffmpeg.txz "*/ffmpeg" && \
     tar --strip-components=1 --wildcards -C /bin -xf ffmpeg.txz "*/ffprobe" && \
-    curl -Ls "$url/Release.key" | apt-key add - && \
+    curl -LSs "$url/Release.key" | apt-key add - && \
     echo "deb $url/ /" >>/etc/apt/sources.list.d/emby-server.list && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends emby-server && \
