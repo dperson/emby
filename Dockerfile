@@ -3,7 +3,7 @@ MAINTAINER David Personette <dperson@gmail.com>
 
 # Install emby
 RUN export DEBIAN_FRONTEND='noninteractive' && \
-    url='http://download.opensuse.org/repositories/home:emby/Debian_Next' && \
+    url='http://download.opensuse.org/repositories/home:emby/Debian_9.0' && \
     ffurl='http://johnvansickle.com/ffmpeg/releases' && \
     apt-get update -qq && \
     apt-get install -qqy --allow-unauthenticated --no-install-recommends \
