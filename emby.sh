@@ -39,7 +39,7 @@ timezone() { local timezone="${1:-EST5EDT}"
 # Arguments:
 #   none)
 # Return: Help text
-usage() { local RC=${1:-0}
+usage() { local RC="${1:-0}"
     echo "Usage: ${0##*/} [-opt] [command]
 Options (fields in '[]' are optional, '<>' are required):
     -h          This help
