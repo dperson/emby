@@ -30,6 +30,7 @@ RUN export LANG=C.UTF-8 && \
     curl -LOSs $glib_url/$glib_ver/$glibc_i18n && \
     apk --no-cache --no-progress add $glibc_base $glibc_bin $glibc_i18n && \
     { /usr/glibc-compat/bin/localedef -c -iPOSIX -fUTF-8 $LANG || :; } && \
+    ln -s libsqlite3.so.0 /usr/lib/libsqlite3.so && \
     curl -LSs $monourl/mono-${monover}-x86_64.pkg.tar.xz -o mono.txz && \
     tar xf mono.txz && \
     groupadd -r emby && \
