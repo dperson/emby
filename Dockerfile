@@ -15,7 +15,7 @@ RUN export LANG=C.UTF-8 && \
     url='https://github.com/MediaBrowser/Emby/releases/download' && \
     version=3.5.0.0 && \
     apk --no-cache --no-progress upgrade && \
-    apk --no-cache --no-progress add bash curl shadow tini && \
+    apk --no-cache --no-progress add bash curl shadow sqlite tini tzdata && \
     echo "-----BEGIN PUBLIC KEY-----\
 	MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZ2u1KJKUu/fW4A25y9m\
 	y70AGEa/J3Wi5ibNVGNn1gT1r0VfgeWd0pUybS4UmcHdiNzxJPgoWQhV2SSW1JYu\
