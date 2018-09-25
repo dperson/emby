@@ -76,8 +76,8 @@ else
     export HOME_PATH=/usr/lib/emby-server PROGRAMDATA=/config
     chown emby. -Rh $PROGRAMDATA $HOME_PATH 2>&1 | grep -iv 'Read-only' || :
     su -l emby -s /bin/bash -c "export HOME_PATH=$HOME_PATH \
-                PROGRAMDATA=$PROGRAMDATA LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 \
-                LC_ALL=en_US.UTF-8 MONO_THREADS_PER_CPU=100 \
+                PROGRAMDATA=$PROGRAMDATA LANG=C.UTF-8 LANGUAGE=C.UTF-8 \
+                LC_ALL=C.UTF-8 MONO_THREADS_PER_CPU=100 \
                 MONO_GC_PARAMS=nursery-size=64m; cd $HOME_PATH;
                 exec mono-sgen $HOME_PATH/bin/MediaBrowser.Server.Mono.exe \
                 -programdata $PROGRAMDATA -ffmpeg $(which ffmpeg) \
