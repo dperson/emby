@@ -5,12 +5,12 @@ MAINTAINER David Personette <dperson@gmail.com>
 RUN export LANG=C.UTF-8 && \
     ff_url='http://johnvansickle.com/ffmpeg/releases' && \
     glib_url='https://github.com/sgerrand/alpine-pkg-glibc/releases/download'&&\
-    glib_version=2.28-r0 && \
+    glib_version=2.29-r0 && \
     glibc_base=glibc-${glib_version}.apk && \
     glibc_bin=glibc-bin-${glib_version}.apk && \
     glibc_i18n=glibc-i18n-${glib_version}.apk && \
     monourl='https://archive.archlinux.org/packages/m/mono' && \
-    mono_version=5.16.0.179-1 && \
+    mono_version=5.18.0.240-1 && \
     key=/etc/apk/keys/sgerrand.rsa.pub && \
     url='https://github.com/MediaBrowser/Emby/releases/download' && \
     version=3.5.0.0 && \
@@ -37,7 +37,7 @@ RUN export LANG=C.UTF-8 && \
     useradd -c 'Emby' -d /usr/lib/emby-server -g emby -m -r emby && \
     echo "Downloading version: $version" && \
     curl -LSs $url/$version/Emby.Mono.zip -o emby.zip && \
-    curl -LSs "$ff_url/ffmpeg-release-64bit-static.tar.xz" -o ffmpeg.txz && \
+    curl -LSs "$ff_url/ffmpeg-release-amd64-static.tar.xz" -o ffmpeg.txz && \
     { tar --strip-components=1 -C /bin -xf ffmpeg.txz "*/ffmpeg" 2>&-||:; } && \
     { tar --strip-components=1 -C /bin -xf ffmpeg.txz "*/ffprobe" 2>&-||:; } &&\
     mkdir -p /config /media /usr/lib/emby-server/bin && \
