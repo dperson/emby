@@ -16,15 +16,7 @@ RUN export LANG=C.UTF-8 && \
     version=4.1.1.0 && \
     apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata&&\
-    echo "-----BEGIN PUBLIC KEY-----\
-	MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZ2u1KJKUu/fW4A25y9m\
-	y70AGEa/J3Wi5ibNVGNn1gT1r0VfgeWd0pUybS4UmcHdiNzxJPgoWQhV2SSW1JYu\
-	tOqKZF5QSN6X937PTUpNBjUvLtTQ1ve1fp39uf/lEXPpFpOPL88LKnDBgbh7wkCp\
-	m2KzLVGChf83MS0ShL6G9EQIAUxLm99VpgRjwqTQ/KfzGtpke1wqws4au0Ab4qPY\
-	KXvMLSPLUp7cfulWvhmZSegr5AdhNw5KNizPqCJT8ZrGvgHypXyiFvvAH5YRtSsc\
-	Zvo9GI2e2MaZyo9/lvb+LbLEJZKEQckqRj4P26gmASrZEPStwc+yqy1ShHLA0j6m\
-	1QIDAQAB\
-	-----END PUBLIC KEY-----" | sed 's/	/\n/g' >$key && \
+    curl -LSs https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o $key && \
     curl -LOSs $glib_url/$glib_version/$glibc_base && \
     curl -LOSs $glib_url/$glib_version/$glibc_bin && \
     curl -LOSs $glib_url/$glib_version/$glibc_i18n && \
@@ -46,10 +38,6 @@ RUN export LANG=C.UTF-8 && \
     chown -Rh emby. /config /media && \
     apk del glibc-i18n && \
     rm -rf /tmp/* /var/cache/* emby.zip ffmpeg.txz glibc* $key mono.txz
-    #version=$(curl -Ls https://github.com/MediaBrowser/Emby/releases.atom | \
-    #            grep -A1 'link.*alternate' | grep '    <' | \
-    #            sed 'N;s/\n/ /' | grep -v 'beta' | head -1 | \
-    #            sed 's|.*/tag/\([^"]*\).*|\1|') && \
 
 COPY emby.sh /usr/bin/
 
