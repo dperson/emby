@@ -79,7 +79,7 @@ else
                 PROGRAMDATA=$PROGRAMDATA LANG=C.UTF-8 LANGUAGE=C.UTF-8 \
                 LC_ALL=C.UTF-8 MONO_THREADS_PER_CPU=100 \
                 MONO_GC_PARAMS=nursery-size=64m; cd $HOME_PATH;
-                exec mono-sgen $HOME_PATH/bin/MediaBrowser.Server.Mono.exe \
+                exec mono-sgen $HOME_PATH/system/EmbyServer.exe \
                 -programdata $PROGRAMDATA -ffmpeg $(which ffmpeg) \
                 -ffprobe $(which ffprobe)"
 fi

@@ -10,10 +10,10 @@ RUN export LANG=C.UTF-8 && \
     glibc_bin=glibc-bin-${glib_version}.apk && \
     glibc_i18n=glibc-i18n-${glib_version}.apk && \
     monourl='https://archive.archlinux.org/packages/m/mono' && \
-    mono_version=5.18.0.240-1 && \
+    mono_version=5.20.1.19-1 && \
     key=/etc/apk/keys/sgerrand.rsa.pub && \
-    url='https://github.com/MediaBrowser/Emby/releases/download' && \
-    version=3.5.0.0 && \
+    url='https://github.com/MediaBrowser/Emby.Releases/releases/download' && \
+    version=4.1.1.0 && \
     apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata&&\
     echo "-----BEGIN PUBLIC KEY-----\
@@ -36,12 +36,12 @@ RUN export LANG=C.UTF-8 && \
     groupadd -r emby && \
     useradd -c 'Emby' -d /usr/lib/emby-server -g emby -m -r emby && \
     echo "Downloading version: $version" && \
-    curl -LSs $url/$version/Emby.Mono.zip -o emby.zip && \
+    curl -LSs $url/$version/embyserver-netframework_$version.zip -o emby.zip &&\
     curl -LSs "$ff_url/ffmpeg-release-amd64-static.tar.xz" -o ffmpeg.txz && \
     { tar --strip-components=1 -C /bin -xf ffmpeg.txz "*/ffmpeg" 2>&-||:; } && \
     { tar --strip-components=1 -C /bin -xf ffmpeg.txz "*/ffprobe" 2>&-||:; } &&\
-    mkdir -p /config /media /usr/lib/emby-server/bin && \
-    unzip emby.zip -d /usr/lib/emby-server/bin && \
+    mkdir -p /config /media /usr/lib/emby-server && \
+    unzip emby.zip -d /usr/lib/emby-server && \
     chown -Rh root. /bin/ff* /usr/lib/emby-server && \
     chown -Rh emby. /config /media && \
     apk del glibc-i18n && \
