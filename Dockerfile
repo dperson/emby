@@ -13,7 +13,7 @@ RUN export LANG=C.UTF-8 && \
     mono_version=5.20.1.19-1 && \
     key=/etc/apk/keys/sgerrand.rsa.pub && \
     url='https://github.com/MediaBrowser/Emby.Releases/releases/download' && \
-    version=4.1.1.0 && \
+    version=4.2.0.40 && \
     apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata&&\
     curl -LSs https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o $key && \
