@@ -5,15 +5,15 @@ MAINTAINER David Personette <dperson@gmail.com>
 RUN export LANG=C.UTF-8 && \
     ff_url='http://johnvansickle.com/ffmpeg/releases' && \
     glib_url='https://github.com/sgerrand/alpine-pkg-glibc/releases/download'&&\
-    glib_version=2.29-r0 && \
+    glib_version=2.30-r0 && \
     glibc_base=glibc-${glib_version}.apk && \
     glibc_bin=glibc-bin-${glib_version}.apk && \
     glibc_i18n=glibc-i18n-${glib_version}.apk && \
     monourl='https://archive.archlinux.org/packages/m/mono' && \
-    mono_version=5.20.1.19-1 && \
+    mono_version=6.0.0.319-1 && \
     key=/etc/apk/keys/sgerrand.rsa.pub && \
     url='https://github.com/MediaBrowser/Emby.Releases/releases/download' && \
-    version=4.2.0.40 && \
+    version=4.2.1.0 && \
     apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata&&\
     curl -LSs https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o $key && \
