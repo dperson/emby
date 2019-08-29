@@ -15,7 +15,7 @@ RUN export LANG=C.UTF-8 && \
     url='https://github.com/MediaBrowser/Emby.Releases/releases/download' && \
     version=4.2.1.0 && \
     apk --no-cache --no-progress upgrade && \
-    apk --no-cache --no-progress add bash curl sqlite-libs tini tzdata && \
+    apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata&&\
     curl -LSs https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o $key && \
     curl -LOSs $glib_url/$glib_version/$glibc_base && \
     curl -LOSs $glib_url/$glib_version/$glibc_bin && \
