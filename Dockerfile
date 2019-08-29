@@ -15,7 +15,7 @@ RUN export LANG=C.UTF-8 && \
     url='https://github.com/MediaBrowser/Emby.Releases/releases/download' && \
     version=4.2.1.0 && \
     apk --no-cache --no-progress upgrade && \
-    apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata&&\
+    apk --no-cache --no-progress add bash curl sqlite-libs tini tzdata && \
     curl -LSs https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o $key && \
     curl -LOSs $glib_url/$glib_version/$glibc_base && \
     curl -LOSs $glib_url/$glib_version/$glibc_bin && \
@@ -25,8 +25,9 @@ RUN export LANG=C.UTF-8 && \
     ln -s libsqlite3.so.0 /usr/lib/libsqlite3.so && \
     curl -LSs $monourl/mono-${mono_version}-x86_64.pkg.tar.xz -o mono.txz && \
     tar xf mono.txz && \
-    groupadd -r emby && \
-    useradd -c 'Emby' -d /usr/lib/emby-server -g emby -m -r emby && \
+    addgroup -S emby && \
+    adduser -S -D -H -h /usr/lib/emby-server -s /sbin/nologin -G emby \
+                -g 'Emby User' emby && \
     echo "Downloading version: $version" && \
     curl -LSs $url/$version/embyserver-netframework_$version.zip -o emby.zip &&\
     curl -LSs "$ff_url/ffmpeg-release-amd64-static.tar.xz" -o ffmpeg.txz && \
