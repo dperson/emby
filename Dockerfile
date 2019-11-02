@@ -35,6 +35,7 @@ RUN export LANG=C.UTF-8 && \
     { tar --strip-components=1 -C /bin -xf ffmpeg.txz "*/ffprobe" 2>&-||:; } &&\
     mkdir -p /config /media /usr/lib/emby-server && \
     unzip emby.zip -d /usr/lib/emby-server && \
+    cert-sync /etc/ssl/certs/ca-certificates.crt && \
     chown -Rh root. /bin/ff* /usr/lib/emby-server && \
     chown -Rh emby. /config /media && \
     apk del glibc-i18n && \
