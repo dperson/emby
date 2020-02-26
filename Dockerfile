@@ -10,10 +10,10 @@ RUN export LANG=C.UTF-8 && \
     glibc_bin=glibc-bin-${glib_version}.apk && \
     glibc_i18n=glibc-i18n-${glib_version}.apk && \
     monourl='https://archive.archlinux.org/packages/m/mono' && \
-    mono_version=6.0.0.334-1 && \
+    mono_version=6.4.0.198-1 && \
     key=/etc/apk/keys/sgerrand.rsa.pub && \
     url='https://github.com/MediaBrowser/Emby.Releases/releases/download' && \
-    version=4.2.1.0 && \
+    version=4.3.1.0 && \
     apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata&&\
     curl -LSs https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o $key && \
