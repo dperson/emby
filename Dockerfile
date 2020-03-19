@@ -5,7 +5,7 @@ MAINTAINER David Personette <dperson@gmail.com>
 RUN export LANG=C.UTF-8 && \
     ff_url='http://johnvansickle.com/ffmpeg/releases' && \
     glib_url='https://github.com/sgerrand/alpine-pkg-glibc/releases/download'&&\
-    glib_version=2.30-r0 && \
+    glib_version=2.31-r0 && \
     glibc_base=glibc-${glib_version}.apk && \
     glibc_bin=glibc-bin-${glib_version}.apk && \
     glibc_i18n=glibc-i18n-${glib_version}.apk && \
