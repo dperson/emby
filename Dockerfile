@@ -13,7 +13,7 @@ RUN export LANG=C.UTF-8 && \
     mono_version=6.4.0.198-2 && \
     key=/etc/apk/keys/sgerrand.rsa.pub && \
     url='https://github.com/MediaBrowser/Emby.Releases/releases/download' && \
-    version=4.4.2.0 && \
+    version=4.4.3.0 && \
     apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash curl shadow sqlite-libs tini tzdata \
                 zstd &&\
